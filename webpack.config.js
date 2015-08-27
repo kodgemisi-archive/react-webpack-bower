@@ -6,6 +6,7 @@
  */
 'use strict';
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
 
@@ -35,7 +36,8 @@ module.exports = {
       'components': __dirname + '/src/components/',
       'stores': __dirname + '/src/stores/',
       'actions': __dirname + '/src/actions/'
-    }
+    },
+    root: [path.join(__dirname, "bower_components")]
   },
   module: {
     preLoaders: [{
@@ -60,7 +62,10 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+    )
   ]
 
 };
