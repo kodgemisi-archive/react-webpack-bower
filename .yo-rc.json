@@ -1,0 +1,8 @@
+{
+  "generator-react-webpack": {
+    "app-name": "hede",
+    "architecture": "flux",
+    "styles-language": "scss",
+    "component-suffix": "jsx"
+  }
+}
