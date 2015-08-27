@@ -103,6 +103,17 @@ module.exports = function (grunt) {
           ]
         }]
       }
+    },
+
+    wiredep: {
+      task: {
+        src: [
+          'src/*.html'   // .html support...
+          //'app/views/**/*.jade',   // .jade support...
+          //'app/styles/main.scss',  // .scss & .sass support...
+          //'app/config.yml'         // and .yml & .yaml support out of the box!
+        ],
+      }
     }
   });
 
@@ -112,6 +123,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'wiredep',
       'open:dev',
       'webpack-dev-server'
     ]);
@@ -119,7 +131,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', ['karma']);
 
-  grunt.registerTask('build', ['clean', 'copy', 'webpack']);
+  grunt.registerTask('build', ['clean', 'wiredep', 'copy', 'webpack']);
 
   grunt.registerTask('default', []);
+
+  grunt.loadNpmTasks('grunt-wiredep');
 };
